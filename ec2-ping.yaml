@@ -1,0 +1,21 @@
+---
+- name: create Group and user
+  hosts: uml
+  become: true
+
+  tasks:
+  - name: create group teacher
+    group:
+       name: teacher
+       state: present
+
+  - name: create user Fred
+    user:
+       name: Fred
+       state: present
+       group: teacher
+
+  - name: install git
+    yum:
+      name: git
+      state: present
